@@ -13,7 +13,7 @@ $result = mysqli_query($link,$sql);
  
 if(!$result)
 {
-    echo 'The categories could not be displayed, please try again later.';
+    echo 'The categories could not be displayed, please try again later :< .';
 }
 else
 {
