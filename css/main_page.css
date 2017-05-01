@@ -1,0 +1,501 @@
+#main {
+	float: left;
+	margin-top: 20px;
+}
+
+aside  {
+	float: left;
+	margin-top: 20px;
+}
+
+#courses{
+	float: left;
+	width: 90%;
+}
+
+.course {
+	width: 100%;
+	margin-bottom: 10px;
+	float: left;
+	font-family: 'Roboto Slab', serif;
+	font-size: 1.2em;
+	color: #646464;
+
+}
+
+.course>img{
+	border:2px solid #dfdfdf;
+	border-radius: 5px;
+	width: 35%;
+	float: left;
+	margin-right: 10px;
+}
+
+.course>span{
+	float: right;
+	font-weight: bold;
+	color: rgba(90,137,173,1);
+}
+
+.Videos>a>.btn {
+	float: left;
+	margin-left: 5%;
+	margin-bottom: 10%;
+}
+
+#videos{
+	border:6px solid #3D3B3B; 
+	border-radius: 10px;
+	float: left;
+	width: 100%;
+	height: 95%;
+}
+
+#one_course{
+	float: left;
+	margin-top: 10px;
+}
+
+#one_course>img{
+	border:2px solid #dfdfdf;
+	border-radius: 5px;
+	width: 65%;
+	float: left;
+	margin-right: 10px;
+}
+
+.heading{
+	font-weight: lighter;
+	font-size: 1.4em;
+	font-family: 'Roboto Slab', serif;
+	border-bottom: 2px solid #4DC9F6;
+	float: left;
+	color: #4f4f4f;
+	padding: 0px 5px;
+}
+
+.heading:first-letter {
+	color:#4DC9F6;
+}
+
+#news {
+	float: left;
+}
+
+.article {
+	width: 37%;
+	float: left;
+	margin-right: 10%;
+	margin-bottom: 20px;
+	border: 1px solid #e3e3e3;
+	background-color: #fff;
+	box-sizing: border-box;
+	max-width: 350px;
+	border-radius: 5px;
+}
+
+.article>img{
+	border-radius: 5px 5px 0 0;
+
+	width: 100%;
+	height: 170px;
+}
+
+.article>span {
+	font-family: 'Roboto Slab', serif;
+	font-size: 1.3em;
+	width: 80%;
+	margin: 7px 10%;
+	float: left;
+	text-align: center;
+	color: #333;
+}
+
+#news>a>.btn {
+	margin-bottom: 20px;
+	float: left;
+	margin-left: 30%;
+}
+
+@media (min-width: 1300px){
+	#main {
+		width: 65%;
+		margin-left: 3%;
+	}
+
+	aside  {
+		width: 30%;
+		margin-left: 2%;
+	}
+
+	#news {
+		margin-left: 10%;
+		width: 90%;
+	}
+
+
+}
+
+@media (max-width: 1299px) and (min-width: 940px){
+	#main {
+		width: 68%;
+		margin-left: 2%;
+	}
+
+	aside  {
+		width: 30%;
+		margin-left: 0%;
+	}
+
+	#news {
+		margin-left: 10%;
+		width: 90%;
+	}
+	#news>a>.btn {
+	margin-bottom: 20px;
+	float: left;
+	margin-left: 35%;
+	}
+
+}	
+
+
+
+@media (max-width: 939px) and (min-width: 639px){
+	#main {
+		width: 95%;
+		margin-left: 2%;
+	}
+
+	aside  {
+		width: 80%;
+		margin-left: 12%;
+	}
+
+	#news {
+		margin-left: 8%;
+		width: 92%;
+	}
+
+	#news>a>.btn {
+	margin-bottom: 20px;
+	float: left;
+	margin-left: 0%;
+	}
+
+}	
+
+@media (max-width: 639px){
+	#main {
+		width: 95%;
+		margin-left: 6%;
+	}
+
+	aside  {
+		width: 80%;
+		margin-left: 10%;
+	}
+
+	#news {
+		margin-left: 2%;
+		width: 96%;
+	}
+
+	#news>a>.btn {
+	margin-bottom: 20px;
+	float: left;
+	margin-left: 0%;
+	}
+
+}	
+
+@media (max-width: 639px){
+	.article{
+		width: 80%;
+		margin-right: 15%;
+	}
+		#news>a>.btn {
+	margin-bottom: 20px;
+	float: left;
+	margin-left: 0%;
+	}
+}
+
+/* nizhnyaya chast*/
+
+#subscribe{
+	margin-left: 15%;
+	float: left;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+@media(min-width: 911px){
+	#subscribe{
+		width: 70%;
+	}
+}
+
+@media(max-width: 910px){
+	#subscribe{
+		width: 100%;
+	}
+}
+
+#subscribe>span{
+	font-family: 'Roboto Slab', serif;
+	font-size: 2em;
+	color: #434343;
+}
+
+.regui  {
+	background-color: #fafafa;
+	width: 88%;
+	padding: 3%;
+	border-radius: 5px;
+	border: 1px solid silver;
+	font-size: 1.1em;
+	color:#3e3e3e;
+}
+
+.regcontainer {
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+#contact input[type="text"],
+#contact input[type="text"],
+#contact input[type="password"],
+#contact input[type="password"],
+#contact input[type="email"],
+#contact textarea,
+#contact button[type="submit"] {
+  font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
+}
+
+#contact {
+  background: #F9F9F9;
+  padding: 25px;
+  margin: 150px 0;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+#contact h3 {
+  display: block;
+  font-size: 30px;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+#contact h4 {
+  margin: 5px 0 15px;
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+fieldset {
+  border: medium none !important;
+  margin: 0 0 10px;
+  min-width: 100%;
+  padding: 0;
+  width: 100%;
+}
+
+#contact input[type="text"],
+#contact input[type="text"],
+#contact input[type="password"],
+#contact input[type="password"],
+#contact input[type="email"],
+#contact textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  background: #FFF;
+  margin: 0 0 5px;
+  padding: 10px;
+}
+
+#contact input[type="text"]:hover,
+#contact input[type="text"]:hover,
+#contact input[type="password"]:hover,
+#contact input[type="password"]:hover,
+#contact input[type="email"]:hover,
+#contact textarea:hover {
+  -webkit-transition: border-color 0.3s ease-in-out;
+  -moz-transition: border-color 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out;
+  border: 1px solid #aaa;
+}
+
+#contact textarea {
+  height: 100px;
+  max-width: 100%;
+  resize: none;
+}
+
+#contact button[type="submit"] {
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  background: #515a66;
+  color: #FFF;
+  margin: 0 0 5px;
+  padding: 10px;
+  font-size: 15px;
+}
+
+#contact button[type="submit"]:hover {
+  background: #43A047;
+  -webkit-transition: background 0.3s ease-in-out;
+  -moz-transition: background 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#contact button[type="submit"]:active {
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.copyright {
+  text-align: center;
+}
+
+#contact input:focus,
+#contact textarea:focus {
+  outline: 0;
+  border: 1px solid #aaa;
+}
+
+::-webkit-input-placeholder {
+  color: #888;
+}
+
+:-moz-placeholder {
+  color: #888;
+}
+
+::-moz-placeholder {
+  color: #888;
+}
+
+:-ms-input-placeholder {
+  color: #888;
+}
+
+
+
+.form-signup input[type="text"],.form-signup input[type="password"] { border: 1px solid rgb(50, 118, 177); }
+.fullscreen_bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-image: url('http://i.imgur.com/aFs5QmP.jpg');
+    background-repeat:repeat;
+  }
+
+
+
+
+
+#login {
+    padding-top: 50px
+}
+#login .form-wrap {
+    width: 30%;
+    margin: 0 auto;
+}
+#login h1 {
+    color: #1fa67b;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+#login .form-group {
+    margin-bottom: 25px;
+}
+#login .checkbox {
+    margin-bottom: 20px;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+#login .checkbox.show:before {
+    content: '\e013';
+    color: #1fa67b;
+    font-size: 17px;
+    margin: 1px 0 0 3px;
+    position: absolute;
+    pointer-events: none;
+    font-family: 'Glyphicons Halflings';
+}
+#login .checkbox .character-checkbox {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+    display: inline-block;
+}
+#login .checkbox .label {
+    color: #6d6d6d;
+    font-size: 13px;
+    font-weight: normal;
+}
+#login>.btn.btn-custom {
+    font-size: 14px;
+	margin: 5% !important;
+}
+#login .forget {
+    font-size: 13px;
+	text-align: center;
+	display: block;
+}
+
+/*    --------------------------------------------------
+	:: Inputs & Buttons
+	-------------------------------------------------- */
+.form-control {
+    color: #212121;
+}
+.btn-custom {
+    color: #fff;
+	background-color: #1fa67b;
+}
+.btn-custom:hover,
+.btn-custom:focus {
+    color: #fff;
+}
+
+.btn-login{
+	margin-right: 3%;
+	margin-top: 5px;
+	border-radius: 5px;
+	padding: 5px 9px;
+	font-size: 1.2em;
+	background-color: rgba(236,101,80,1);
+	background-color: rgba(124,183,235,1);
+	text-shadow: #454545 0 0 2px;
+	border-bottom: 4px solid rgba(90,137,173,1);
+	color: white;
+	font-family: 'Roboto Slab', serif;
+}
+
+
+.btn-login:hover {
+	border-bottom: 2px solid rgba(90,137,173,1);
+	margin-top: 9px;
+}
+.btn-login:active {
+	border-bottom: 0;
+	margin-top: 9px;
+}
