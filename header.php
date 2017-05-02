@@ -30,9 +30,17 @@ session_start();
 				</div>
 				<div id="reg_auth">
                     <?php
-                    if($_SESSION['signed_in'])
+                    if (isset($_SESSION['signed_in']) && $_SESSION['signed_in'])
                     {
-                        echo 'Hello ,' . $_SESSION['user_name'] . '  <a href="signout.php">Sign out</a>';
+                        echo '	<div id="about"> 
+		                      		Hello ,' . $_SESSION['user_name'] . ' 
+		                      	</div>
+
+		                      		<a href="signout.php" >
+										<div class="btn"style="float:right;">Sign out</div>
+									</a>
+
+		                      	';
                     }
                     else{
                         echo '
@@ -46,9 +54,10 @@ session_start();
 				</div>
 			</header>
 
-		<nav>
+		<nav style=" z-index: 9 !important;">
 			<div id="menuShow"><i class="fa fa-bars" aria-hidden="true"></i></div>
 			<div id="hideMenu">
+
 				<a href="index.php" >Home</a>
                 <a href="create_cat.php">Create category</a>
                 <a href ="create_topic.php">Create topic</a>
@@ -64,16 +73,42 @@ session_start();
 				 	</div><!-- /.col-lg-6 -->
 
 
-		    <div id="mobileMenu" style="margin-left: 10%;">
+		    <div id="mobileMenu" style="margin-left: 10%; ">
+		    	        			<style>
+			 a{  
+                                    font-family: "Suez One", serif;
+                                    font-size: 18px;
+                                    color: black;
+                                    text-decoration: none;
+                                    transition: all.6s ease;
+                                    -ms-transition: all.6s ease;
+                                    -o-transition: all.6s ease;
+                                    -moz-transition: all.6s ease;
+                                    -webkit-transition: all.6s ease;
+                                }
+
+                                a:hover {
+                                    color: rgba(150,150,150,1);;
+                                    text-decoration: none;
+                                    transition: all.6s ease;
+                                    -ms-transition: all.6s ease;
+                                    -o-transition: all.6s ease;
+                                    -moz-transition: all.6s ease;
+                                    -webkit-transition: all.6s ease;
+                                }
+			</style>
 		    	<a href="index.php" >Home</a><br>
                 <a href="create_cat.php">Create category</a>
+                <br>
                 <a href ="create_topic.php">Create topic</a>  
                 <!--v melkoj versi(mobila) create cat i create topic na odnoj stroke -->
 			    <hr>
-			    <a href="About.html">Login</a>
+			    <a href="About.html">Login    /</a>
 			    <a href="Register.php">Register</a>
 		    </div>
 		</nav>
 
 		<div id="main" >
             <div id="news">
+
+

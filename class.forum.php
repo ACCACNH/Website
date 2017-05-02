@@ -1,3 +1,4 @@
+
 <?php
 
 require_once('dbconfig.php');
@@ -30,31 +31,16 @@ class FORUM
         else
         {
             //check for sign in status
-            if(!$_SESSION['signed_in'])
+            if (isset($_SESSION['signed_in']) && $_SESSION['signed_in'])
             {
-                echo 'You must be signed in to post a reply.';
-            }
-            else
-            {
-                /*a real user posted a real reply
-                http://stackoverflow.com/questions/60174/how-can-i-prevent-sql-injection-in-php 
-                GDE USER PISHET I ETI DANNIE OTPRAVLJAJUTSJA V MYSQL TAM MOZNO INJECTNUTJ V MYSQL KOMMANDU 
-                DOPUSTIM $_POST['reply-content'] CEL ZAPIWET (') I IZZA OPOSTROFA VVOD BUDET SLOMAN TAK KAK V
-                "INSERT INTO 
-                            posts(post_content,
-                                  post_date,
-                                  post_topic,
-                                  post_by) 
-                        !!!!!!!VALUES ('" . (') . "', I SLOMAET VVOD , POETOMU TUDA MOZNO I ZAPISATJ POLNOCENNIJE MYSQL KOMMANDI VRODE DROP DB USERS;
-                */
+                //a real user posted a real reply
+                $stmt = $this->conn->prepare("INSERT INTO posts(post_content,post_topic,post_by)
+                                                VALUES (:rcontent,:tid,:uid)");
 
-                $stmt = $this->conn->prepare( "INSERT INTO 
-                            posts(post_content,
-                                  post_topic,
-                                  post_by) 
-                        VALUES ('" . $_POST['reply-content'] . "', 
-                                " . $_GET['id'] . ",
-                                " . $_SESSION['user_id'] . ")");                
+                $stmt->bindparam(":rcontent", $_POST['reply-content']);
+                $stmt->bindparam(":tid", $_GET['id']);
+                $stmt->bindparam(":uid", $_SESSION['user_id']);
+
                 $result = $stmt->execute();
 
                 if(!$result)
@@ -65,6 +51,10 @@ class FORUM
                 {
                     echo 'Your reply has been saved, check out <a href="topic.php?id=' . htmlentities($_GET['id']) . '">the topic</a>.';
                 }
+            }
+            else
+            {
+                echo 'You must be signed in to post a reply.';
             }
         }
     }
@@ -106,19 +96,52 @@ class FORUM
                 else
                 {
                     //prepare the table
-                    echo '<div class="table">';
-                    echo '<table border="1">
-                    <tr>
-                    <th>Category</th>
-                    </tr>'; 
-                    while($row =$stmt->fetch(PDO::FETCH_ASSOC))
+                    echo '
+                            <style type="text/css">
+                                a{  
+                                    font-family: "Suez One", serif;
+                                    font-size: 20px;
+                                    color: black;
+                                    text-decoration: none;
+                                    transition: all.6s ease;
+                                    -ms-transition: all.6s ease;
+                                    -o-transition: all.6s ease;
+                                    -moz-transition: all.6s ease;
+                                    -webkit-transition: all.6s ease;
+                                }
+
+                                a:hover {
+                                    color: rgba(150,150,150,1);
+                                    text-decoration: none;
+                                    transition: all.6s ease;
+                                    -ms-transition: all.6s ease;
+                                    -o-transition: all.6s ease;
+                                    -moz-transition: all.6s ease;
+                                    -webkit-transition: all.6s ease;
+                                }
+
+
+                            </style>
+                            <div style="clear: both"><br></div>
+                                 <div class="col-lg-9 col-md-10 col-sm-12 ">
+                                    <table class="table" style="box-shadow:0 0 15px rgba(0,0,0,0.5);">
+                        ';
+                    while($row = $stmt->fetch(PDO::FETCH_ASSOC))
                     { 
                         echo '<tr>';
-                        echo '<td>';
-                        echo '<h3><a href="category.php?id=' . $row['cat_id'] . '">' . $row['cat_name'] . '</a></h3>' . $row['cat_description'];
-                        echo '</tr>';
+                        echo '<th style="width:230px;">
+                                <a style="" href="category.php?id=' .$row['cat_id']. '" >' .$row['cat_name']. '</a>
+                              </th>
+
+                              <th style=" background-color:rgba(90,137,173,1); ">
+                               '.$row['cat_description'].'
+                              </th>
+                              </tr>';
+
                     }
-                    echo '</div>';
+                    echo '</table>
+                            </div>
+';
                 }
             }
         }
@@ -152,7 +175,7 @@ class FORUM
                             FROM
                                 topics
                             WHERE
-                                topic_cat ='".$cat_id."'  ";
+                                topic_cat ='".$cid."'  ";
                     $stmt = $this->conn->prepare("SELECT topic_id, topic_subject, topic_cat FROM topics WHERE topic_cat =:cid");
 
                     $result = $stmt->execute(array(':cid'=>$cid)); 
@@ -171,23 +194,55 @@ class FORUM
                         {
 
                             //prepare the table
-                            echo '<table border="1">
+                            echo ' 
+                            <style type="text/css">
+                                a{  
+                                    font-family: "Suez One", serif;
+                                    font-size: 16px;
+                                    color: black;
+                                    text-decoration: none;
+                                    transition: all.6s ease;
+                                    -ms-transition: all.6s ease;
+                                    -o-transition: all.6s ease;
+                                    -moz-transition: all.6s ease;
+                                    -webkit-transition: all.6s ease;
+                                }
+
+                                a:hover {
+                                    color: rgba(150,150,150,1);;
+                                    text-decoration: none;
+                                    transition: all.6s ease;
+                                    -ms-transition: all.6s ease;
+                                    -o-transition: all.6s ease;
+                                    -moz-transition: all.6s ease;
+                                    -webkit-transition: all.6s ease;
+                                }
+
+
+
+
+
+                            </style>
+                            <div style="clear: both"><br></div>
+                                    <div class="col-lg-9 col-md-10 col-sm-12 ">
+
+                            <table class="table" style="box-shadow:0 0 15px rgba(0,0,0,0.5);">
                                   <tr>
-                                    <th>Topic</th>
-                                    <th>Created at</th>
+                                    <th style=" background-color:rgba(90,137,173,1); color:rgba(232,232,232,1); font-size: 24px;">Topic</th>
                                   </tr>'; 
 
                             while($row = $stmt->fetch(PDO::FETCH_ASSOC))
                             {               
-                                echo '<tr>';
-                                    echo '<td class="leftpart">';
-                                    echo '<h3><a href="topic.php?id=' . $row['topic_id'] . '">' . $row['topic_subject'] . '</a><h3>';
-                                    echo '</td>';
-                                    echo '<td class="rightpart">';
-                                        echo date('d-m-Y', strtotime($row['topic_date']));//TIMESTAMMP AN VARCHAR FIXITJ TUT
-                                    echo '</td>';
-                                echo '</tr>';
+                                echo '<tr>
+                                        <td>
+                                            <a href="topic.php?id=' .$row['topic_id']. '">' .$row['topic_subject']. '</a>
+                                        </td>
+                                      </tr>';
                             }
+
+                            echo '</table>
+                            </div>
+                            ';
                         }
                     }
                 }
@@ -199,13 +254,7 @@ class FORUM
 		}
 	}
     public function create_topic(){
-        echo '<h2>Create a topic</h2>';
-        if($_SESSION['signed_in'] == false)
-        {
-            //the user is not signed in
-            echo 'Sorry, you have to be <a href="login.php">signed in</a> to create a topic.';
-        }
-        else
+        if (isset($_SESSION['signed_in']) && $_SESSION['signed_in'])
         {
             //the user is signed in
             if($_SERVER['REQUEST_METHOD'] != 'POST')
@@ -218,8 +267,8 @@ class FORUM
                     cat_description
                     FROM
                     categories");
-												  
-			     
+                                                  
+                 
                 $result =$stmt->execute();
 
                 if(!$result)
@@ -234,7 +283,7 @@ class FORUM
                         //there are no categories, so a topic can't be posted
                         if($_SESSION['user_level'] == 1)//user_level 1= admin
                         {
-                            echo 'You have not created categories yet.';
+                            echo '<h2 class="text" style="font-size:20px; margin-top:18%; margin-left:5%;">You have not created categories yet.</h2>';
                         }
                         else
                         {
@@ -244,20 +293,42 @@ class FORUM
                     else
                     {
 
-                        echo '<form method="post" action="">
-                            Subject: <input type="text" name="topic_subject" />
-                            Category:'; 
+                        echo '
+                            <div id="main" style="max-width: 100% !important;">
+                                <div id="news">
+                                    <h2 class="heading" style="font-size:40px;margin-left:5%;">Create a topic</h2>
+                                    <div style="clear: both"><br></div>
+                                        <div class="content-fluid" style="z-index: -1;">
+                                            <div class="col-lg-9 col-md-10 col-sm-12 ">
+                                                <div class="regui" style="z-index: -1;">
+                                                        <div class="regcontainer" >
+                                <form method="post" action="" id="login-form">
+                                <div class="form-group">
+                                Subject: <input type="text" name="topic_subject" class="form-control" placeholder="Write subject here" />
+                                </div>
+                                <div class="form-group">
+                                Category:'; 
 
-                        echo '<select name="topic_cat">';
+                        echo '<select class="form-control" name="topic_cat"></div>';
                             while($row = $stmt->fetch(PDO::FETCH_ASSOC))
                             {
                                 echo '<option value="' . $row['cat_id'] . '">' . $row['cat_name'] . '</option>';
                             }
                         echo '</select>'; 
 
-                        echo 'Message: <textarea name="post_content" /></textarea>
-                            <input type="submit" value="Create topic" />
-                         </form>';
+                        echo 'Message: <textarea name="post_content" class="form-control" placeholder="Write message here" style="max-width:100%; min-height:150px;" /></textarea>
+                            <input type="submit" id="btn-login" class="btn-login" style="margin-right: 10%"  value="Create topic" />
+                         </form>
+
+
+                                                </div>
+                                            </div>    
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         ';
                     }
                 }
             }
@@ -304,11 +375,16 @@ class FORUM
                             $sql = "COMMIT;";
                             $result =$this-> runQuery($sql);
 
-                            echo 'You have successfully created <a href="topic.php?id='. $this->conn->lastInsertId() . '">your new topic</a>.';
+                            echo '<h2 class="text" style="font-size:20px; margin-top:18%; margin-left:5%;">You have successfully created <a href="topic.php?id='. $this->conn->lastInsertId() . '">your new topic</a>.</h2>';
                         }
                     }
                 }
             }
+        }
+        else
+        {
+        //the user is not signed in
+        echo 'Sorry, you have to be <a href="login.php">signed in</a> to create a topic.';
 }
         
     }
@@ -401,7 +477,7 @@ public function showPost($tid)
                 //display category data
                 while($row = $stmt->fetch(PDO::FETCH_ASSOC))
                 {
-                    echo '<div><h2>Posts in /' .$row['topic_subject']. '/ category</h2>';
+                    echo '<h1 class="textpost" style="font-size:24px;">Posts in ' .$row['topic_subject']. ' category</h1>';
                 }
 
                 //do a query for the topics
@@ -429,37 +505,50 @@ public function showPost($tid)
                     else
                     {
                         //prepare the table
-                        echo '
-                            <table border="1">
-                              <tr>
-                                <th>Posted by</th>
-                                <th>Content</th>
-                              </tr>'; 
+                        echo '  
+                                    <div style="clear: both"><br></div>
+                                        <div class="col-lg-9 col-md-10 col-sm-12 ">
+
+                                 <table class="table" style="box-shadow:0 0 15px rgba(0,0,0,0.5)">
+                                ';
 
                         while($row=$stmt->fetch(PDO::FETCH_ASSOC))
                         {               
-                            echo '<tr>';
-                                echo '<td class="leftpart_posts">';
-                                echo $row['user_name'];
-                                echo '<br>';
-                                echo $row['post_date'];
-                                echo '</td>';
-                                echo '<td class="rightpart_posts">';
-                                echo $row['post_content']; 
-                                echo '</td>';
-                            echo '</tr>';
+                            echo '  
+
+                                <tr >
+                                    <th style="border: 1px solid rgba(90,137,173,1);
+    background-color: rgba(90,137,173,1);"><span class="usersas"style="color:rgba(232,232,232,1);">' .$row['user_name'].'</span> - ' .$row['post_date']. '</th>
+                                </tr>
+
+                                <tr class="user_comment">
+                                    <td style="border: 1px solid rgba(90,137,173,1); background-color:rgba(232,232,232,1); height:100px;">' .$row['post_content']. ' </td>
+                                </tr>
+
+                            ';
                         }
+
+                        echo '</table>';
+
                      echo '<div id="reply"> 
-                            <br>
-                            <h3>Reply: </h3>
-                     <form method="post" action="reply.php?id=' . $tid . '">
-                    <textarea name="reply-content"></textarea><br>
-                    <input type="submit" value="Submit reply" />
-                    </form>
-                    </div>'; 
+
+                                <div class="form-group">
+                                <form method="post" action="reply.php?id=' . $tid . '">
+                                    <textarea name="reply-content" class="form-control" placeholder="Your comment" style="max-width:100%; min-height:120px;border: 1px solid rgba(90,137,173,1); border-radius: 0 !important;"  ></textarea>
+                                    <input type="submit" id="btn-login" class="btn-login" value="Submit reply"/>
+                                </form>
+                                </div>
+                           </div>
+
+
+   
+                            </div>
+'; 
                     }
                 }
             }
         }
 	}
 }
+
+
