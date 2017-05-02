@@ -4,19 +4,50 @@ include 'header.php';
 require_once('class.user.php');
 $user = new USER();
  
-echo '<h3>Sign up</h3>';
+echo '<h1 class="heading" style="font-size:46px;">Sign up</h1>';
  
 if($_SERVER['REQUEST_METHOD'] != 'POST')
 {
     /*form not posted , display form
     post will cause the form to post on the same page*/
-    echo '<form method="post" action="">
-        Username: <input type="text" name="user_name" /><br>
-        Password: <input type="password" name="user_pass"><br>
-        Password again: <input type="password" name="user_pass_check"><br>
-        E-mail: <input type="email" name="user_email"><br>
-        <input type="submit" value="register" />
-     </form>';
+    echo '
+
+            <div id="main" style="max-width: 100% !important;margin-top:10%;">
+            <div id="news">
+                <div style="clear: both"><br></div>
+                    <div class="content-fluid" style="z-index: -1;">
+                        <div class="col-lg-9 col-md-10 col-sm-12 ">
+                            <div class="regui" style="z-index: -1;">
+                                    <div class="regcontainer" >
+                                        <form id="contact" action="" method="post" style="margin: 5%;z-index: 1;">
+                                            <p class="h3">Registration form</p>
+                                            <p class="h4">Dont contact us for custom quote</p>
+                                            <fieldset>
+                                                <input placeholder="Username" type="text" tabindex="1" name="user_name" required autofocus>
+                                            </fieldset>
+                                            <fieldset>
+                                                <input id="password" placeholder="Password" type="password" name="user_pass" tabindex="2" required>
+                                            </fieldset>
+                                            <fieldset>
+                                                <input id="confirm_password" placeholder="Confirm Password" type="password" name="user_pass_check" tabindex="3" required>
+                                            </fieldset>
+                                            <fieldset>
+                                                <input placeholder="Your Email Address" type="email" name="user_email" tabindex="4" required>
+                                            </fieldset>
+                                            <fieldset>
+                                              <button name="submit" type="submit" id="contact-submit" data-submit="...Sending" class="pure-button pure-button-primary">Submit</button>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                            </div>    
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+
+
+     ';
 }
 else
 {

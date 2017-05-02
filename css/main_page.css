@@ -64,6 +64,18 @@ aside  {
 	margin-right: 10px;
 }
 
+.text{
+	font-weight: lighter;
+	font-size: 1em;
+	font-family: 'Roboto Slab', serif;
+	float: left;
+	color: #4f4f4f;
+	padding: 0px 5px;
+}
+
+.text:first-letter {
+	color:#4DC9F6;
+}
 .heading{
 	font-weight: lighter;
 	font-size: 1.4em;
@@ -78,6 +90,14 @@ aside  {
 	color:#4DC9F6;
 }
 
+.textpost{
+	font-weight: lighter;
+	font-size: 1.4em;
+	font-family: 'Suez One', serif;
+	float: left;
+	color: #4f4f4f;
+	padding: 0px 5px;
+}
 #news {
 	float: left;
 }
@@ -266,7 +286,6 @@ aside  {
 }
 
 #contact input[type="text"],
-#contact input[type="text"],
 #contact input[type="password"],
 #contact input[type="password"],
 #contact input[type="email"],
@@ -305,7 +324,6 @@ fieldset {
 }
 
 #contact input[type="text"],
-#contact input[type="text"],
 #contact input[type="password"],
 #contact input[type="password"],
 #contact input[type="email"],
@@ -317,7 +335,6 @@ fieldset {
   padding: 10px;
 }
 
-#contact input[type="text"]:hover,
 #contact input[type="text"]:hover,
 #contact input[type="password"]:hover,
 #contact input[type="password"]:hover,
@@ -499,3 +516,25 @@ fieldset {
 	border-bottom: 0;
 	margin-top: 9px;
 }
+
+
+
+th {
+	border: 5px solid rgba(90,137,173,1);
+	background-color: black;
+}
+
+	#tables table, 
+	#tables thead, 
+	#tables tbody, 
+	#tables th, 
+	#tables td, 
+	#tables tr { 
+		display: block; 
+	}
+h
+	#tables thead {
+		border-left: 5px solid rgba(90,137,173,1);
+	background-color: black;
+	}
+
